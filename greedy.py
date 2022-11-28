@@ -104,7 +104,32 @@ def dfs(graph,v,visited):
         if not visited[i]:   #현재 출력된 노드가 방문이 안되었다면 dfs 다시 실행
             dfs(graph,i,visited)   
 
-def dfsMain():
+
+
+#현재 나랑 방문한 노드를 다집어넣어
+#탐색 끝났으면 맨첫번째꺼버려
+# 두번째노드로 가 
+# 1,2,3,8,7,
+# 시작 , 1번 가서 끝까지 print 출력하고 방문 
+# 
+def bfs(graph,start,visited):
+    queue = deque([start])
+
+    visited[start]=True
+    while queue:
+        v=queue.popleft()
+        
+        print(v,end=" ")
+        for i in graph[v]:
+            if not visited[i]:
+                queue.append(i)
+                visited[i]=True
+
+
+
+def fsMain():
+    #dfs 결과 1 2 7 6 8 3 4 5
+    #bfs 결과 1,2,3,8,7,4,5,6
     graph = [
         [],
         [2,3,8],
@@ -119,10 +144,21 @@ def dfsMain():
 
     visited = [False] * 9 
 
-    dfs(graph,1,visited)
+    bfs(graph,1,visited)
+
+
+
+
+
+
+
+    
+
+
+
 start_time = time.time()
 # 시작
-dfsMain()
+fsMain()
 # 소요시간 출력
 end_time = time.time()
 print("\ntime:",end_time-start_time)
