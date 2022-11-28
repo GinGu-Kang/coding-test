@@ -1,5 +1,17 @@
 
-N,M = 4,2
+n,m = 49,6
 
-for i in range(1,N+1):
-    print(i)
+s=[]
+
+def dfs():
+    if len(s)==m:
+        print(" ".join(map(str,s)))
+        return
+
+    for i in range(1,n+1):
+        if i not in s:
+            s.append(i)
+            dfs()
+            s.pop()
+
+dfs()
